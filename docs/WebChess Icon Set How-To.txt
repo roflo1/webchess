@@ -1,0 +1,77 @@
+How To Make A WebChess Icon Set
+
+You may have seen how WebChess supports different "themes" such as Beholder and wondered how you could make your own. If all you want is to use a particular set of images or icons for your chess piece, it turns out that it's not that difficult! The short answer is to make a transparent PNG of each of your chess pieces, and make them square. That is more or less it! And now for the long version...
+
+To clarify, by "theme" I mean "everything in the user interface that changes when a user selects a theme in their preference tab." So what can and cannot be modified by a theme? The obvious one is you can make your chess pieces look however you want. You can also include a CSS stylesheet that overrides the default chess.css, which means you can override any color on the site. Perhaps more relevant to icon sets, that means you can set the board's light and dark colors, as well as the color used to highlight a piece when selected.
+
+Let's get started! If you search for "chess icons" on the internet you'll find plenty of icons you can use. Better yet: draw your own and scan them in, or use graphics software to design some from scratch! When choosing an icon set, keep in mind that in WebChess the entire icon will be shown within a square on the chess board. By default, squares are 50 pixels by 50 pixels but this can be changed by changing the 'squaresize' style in chess.css or by overriding the style in your theme's CSS file.
+
+Now that you've chosen an icon set and the size of your squares, it is time to bring your icons into WebChess! You'll need one icon for each of your chess pieces in each of your color. Unless your source image is a vector graphic, you should never resize up an icon to your square size as this will introduce ugly artifacts in your icons. It is generally safe to resize down your icon to fit your board size no matter its file format. 
+
+I typically use my graphics software's rectangle selection tool and constrain the proportions so as to get the smallest perfect square I can fit around a single chess piece. I also try and center the chess piece within the selected area. Next I copy and paste my selection into a new image where I erase the background. This leaves me with nothing but a square image with a transparent background that just barely fits around my chess piece. Now I resize the image to my desired square size, for example 50x50 pixels. To finish, I save it in the PNG file format ensuring I keep the transparent background.  Repeat for each chess piece in each color. Be aware that for WebChess to pick up your icons, you need to follow this naming convention when naming your files (assuming the PNG file format):
+
+                 Black              White
+   Pawn:     black_pawn.png     white_pawn.png
+   Rook:     black_rook.png     white_rook.png
+   Knight:   black_knight.png   white_knight.png
+   Bishop:   black_bishop.png   white_bishop.png
+   Queen:    black_queen.png    white_queen.png
+   King:     black_king.png     white_king.png
+
+At this point you could also create your wctheme.css in the same directory as your images and begin setting your theme colors.  Here is for example a three-line wctheme.css that changes the square colors as well as the color used to highlight chess pieces when selected:
+
+   .light_enabled { background-color: white;   }
+   .dark_enabled  { background-color: #3C86F6; }
+   .highlighted   { background-color: green;  }
+
+Now you should have your 12 icons and possibly a wctheme.css file in a folder. Name your folder based on how you would like your theme to be called, but avoid using spaces or special characters that might cause trouble with URLs. Because most web servers are case sensitive, WebChess has followed this naming convention: use all lowercase characters for your folder name and replace spaces with underscores, like this: "for_example". Make a note of this folder name as you will need it in an upcoming step. Place your folder in the images folder next to the "beholder" and "plain" themes so WebChess knows where to find it.
+
+Almost done, now we need to get your theme to show up in the Theme dropdown. Find the section that looks like this (simplified version here):
+
+   <div class="inputbox"><select name="rdoTheme">
+   <?php if ($_SESSION['pref_theme'] == 'beholder') { ?>
+      <option value="beholder" selected="selected">Beholder</option>
+      <option value="plain">Plain</option>
+   <?php } else { ?>
+      <option value="beholder">Beholder</option>
+      <option value="plain" selected="selected">Plain</option>
+   <?php } ?>
+   </select></div>
+
+This is the dropdown menu for the Theme preference and we want to add our new theme here. Start by adding your new Theme to the existing options list. Remember the directory name I told you to make a note of? Use it here for the value attribute of your <option>, and the name of your theme as you would like displayed to your user for the content. For example:
+
+   <div class="inputbox"><select name="rdoTheme">
+   <?php if ($_SESSION['pref_theme'] == 'beholder') { ?>
+      <option value="beholder" selected="selected">Beholder</option>
+      <option value="for_example">For Example</option>
+      <option value="plain">Plain</option>
+   <?php } else { ?>
+      <option value="beholder">Beholder</option>
+      <option value="for_example">For Example</option>
+      <option value="plain" selected="selected">Plain</option>
+   <?php } ?>
+   </select></div>
+
+Now users can select your new theme in their preferences! However we need the dropdown to remember users selection when they choose your theme as well. To do so, add a new elseif block to test for your theme and set it as selected by default:
+
+   <div class="inputbox"><select name="rdoTheme">
+   <?php if ($_SESSION['pref_theme'] == 'beholder') { ?>
+      <option value="beholder" selected="selected">Beholder</option>
+      <option value="for_example">For Example</option>
+      <option value="plain">Plain</option>
+   <?php } elseif ($_SESSION['pref_theme'] == 'for_example') { ?>
+      <option value="beholder">Beholder</option>
+      <option value="for_example" selected="selected">For Example</option>
+      <option value="plain">Plain</option>
+   <?php } else { ?>
+      <option value="beholder">Beholder</option>
+      <option value="for_example">For Example</option>
+      <option value="plain" selected="selected">Plain</option>
+   <?php } ?>
+   </select></div>
+
+Save your changes to mainmenu.php.  Upload your theme's folder to your server, then update your mainmenu.php on your server with your changes.  You should now be able to select your theme in your preferences and the next game you load should feature it!  Make sure that when you return to your preferences your theme remains selected in the dropdownk, and make sure all your chess pieces are showing up on the board.  Finally, if you've decided to use a wctheme.css file, make sure those changes to the theme are showing up.
+
+If your images are not showing up, double-check to ensure you followed the proper naming convention.  Also make sure the value in the <option> that corresponds to your theme matches your theme's folder name precisely.  Finally, double check that WebChess has the necessary read permissions to access the files in that folder.
+
+That's it!  With a little luck you should now be playing WebChess with your very own custom theme!  Now consider sharing it with other WebChess users online.
