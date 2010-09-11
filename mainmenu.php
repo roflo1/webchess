@@ -515,10 +515,6 @@
 			document.userdata.submit();
 		}
 <?php } ?>
-	function challenge() {
-		window.location = 'inviteplayer.php';
-	}
-
 	function reload() {
 		window.location.replace(window.location.href);
 	}
