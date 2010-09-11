@@ -50,6 +50,8 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
     <link rel="stylesheet" href="mainmenu.css" type="text/css" />
     <script type="text/javascript" src="javascript/messages.js"></script>
     <title><?php echo gettext("WebChess") . " :: " . gettext("Message View");?></title>

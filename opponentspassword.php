@@ -89,6 +89,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 <link rel="stylesheet" href="userlogin.css" type="text/css" />
 <title>WebChess :: <?php echo gettext("Login");?></title>
 <script language="javascript" type="text/javascript">

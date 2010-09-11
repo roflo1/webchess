@@ -29,7 +29,8 @@ session_start();
 
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
-		<meta name="generator" content="Adobe GoLive 6">
+		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 		<title>Send Message</title>
 
 <?php

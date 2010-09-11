@@ -125,6 +125,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta http-equiv="pragma" content="no-cache" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 <link rel="stylesheet" href="chess.css" type="text/css" />
 <?php
 	echo("<link rel='stylesheet' href='images/");

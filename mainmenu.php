@@ -446,6 +446,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 <link rel="stylesheet" href="mainmenu.css" type="text/css" />
 <script type="text/javascript" src="javascript/tablesort.js"></script>
 <script type="text/javascript" src="javascript/menu.js"></script>
