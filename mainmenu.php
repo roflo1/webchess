@@ -606,7 +606,7 @@
 						if ($_SESSION['pref_history'] == 'pgn')
 						{
 					?>
-                                                <div><input name="rdoHistory" type="radio" value="pgn" checked="checked" /> <?php echo gettext("PGN");?></div>
+                                                <div><input name="rdoHistory" type="radio" value="pgn" checked="checked" /> <?php echo gettext("SAN");?></div>
                                                 <div><input name="rdoHistory" type="radio" value="verbous" /> <?php echo gettext("Verbose");?></div>
 					<?php
 						}

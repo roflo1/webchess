@@ -99,7 +99,7 @@
                                         <h1><?php echo gettext("Personal preferences");?></h1>
                                         <div class="inputlabel"><?php echo gettext("History");?></div>
 					<div class="inputbox">
-                                            <div><input name="rdoHistory" type="radio" value="pgn" checked="checked" /> <?php echo gettext("PGN");?></div>
+                                            <div><input name="rdoHistory" type="radio" value="pgn" checked="checked" /> <?php echo gettext("SAN");?></div>
                                             <div><input name="rdoHistory" type="radio" value="verbous" /> <?php echo gettext("Verbose");?></div>
 					</div>
                                         <div class="inputlabel"><?php echo gettext("History Layout");?></div>
