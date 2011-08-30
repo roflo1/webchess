@@ -49,13 +49,13 @@
 
 	/* mysql table names
 	   Change these if your database needs different table names */
-	$CFG_TABLE[communication] = "communication";
-	$CFG_TABLE[games] = "games";
-	$CFG_TABLE[history] = "history";
-	$CFG_TABLE[messages] = "messages";
-	$CFG_TABLE[pieces] = "pieces";
-	$CFG_TABLE[players] = "players";
-	$CFG_TABLE[preferences] = "preferences";
+	$CFG_TABLE['communication'] = "communication";
+	$CFG_TABLE['games'] = "games";
+	$CFG_TABLE['history'] = "history";
+	$CFG_TABLE['messages'] = "messages";
+	$CFG_TABLE['pieces'] = "pieces";
+	$CFG_TABLE['players'] = "players";
+	$CFG_TABLE['preferences'] = "preferences";
 
 	/* theme settings */
 	$CFG_IMAGE_EXT = "png";

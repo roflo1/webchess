@@ -569,7 +569,7 @@
 						<?php if ($CFG_NICKCHANGEALLOWED) { ?>
 							<div class="inputlabel">Nick</div>
 							<div>
-								<input name="txtNick" type="text" class="inputbox" value="<?php echo($_SESSION['nick']); ?> />
+								<input name="txtNick" type="text" class="inputbox" value="<?php echo($_SESSION['nick']); ?>" />
 							</div>
 						<?php } ?>
                                                 <div class="inputlabel"><?php echo gettext("Current Password"); ?></div>
