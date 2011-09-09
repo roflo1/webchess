@@ -86,6 +86,28 @@ if ($_POST['reuse']=='true')
 
 //Here we start the second part. We start to generate config.php.
 echo "<?php";
+// Here we display license info..
+?>
+
+/*
+    This file is part of WebChess. http://webchess.sourceforge.net
+	Copyright 2010 Jonathan Evraire, Rodrigo Flores
+
+    WebChess is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    WebChess is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with WebChess.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+<?php
 echo "\n\$_CONFIG=true;\n\n";
 
 echo "/* database settings */\n";
@@ -122,13 +144,13 @@ else echo "FALSE;\n";
 
 ?>
 /* mysql table names */
-$CFG_TABLE[communication] = "communication";
-$CFG_TABLE[games] = "games";
-$CFG_TABLE[history] = "history";
-$CFG_TABLE[messages] = "messages";
-$CFG_TABLE[pieces] = "pieces";
-$CFG_TABLE[players] = "players";
-$CFG_TABLE[preferences] = "preferences";
+$CFG_TABLE['communication'] = "communication";
+$CFG_TABLE['games'] = "games";
+$CFG_TABLE['history'] = "history";
+$CFG_TABLE['messages'] = "messages";
+$CFG_TABLE['pieces'] = "pieces";
+$CFG_TABLE['players'] = "players";
+$CFG_TABLE['preferences'] = "preferences";
 
 <?php
 echo "\$CFG_IMAGE_EXT = '".$_POST['imageExtension']."';\n";
