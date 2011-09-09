@@ -504,19 +504,19 @@ switch($_POST['confirm']){
                   <input type="hidden" name="pass_last" value="<?php echo $pass; ?>"/>
                </td></tr>
             <tr><td colspan="2"><b><u>Server Settings:</u></b></td></tr>
-            <tr><td>Time before session expires (seconds):</td><td><input type="text" name="timeout"/> (ex: 900)</td></tr>
-            <tr><td>Time before a game expires (days):</td><td><input type="text" name="expire"/> (ex: 14)</td></tr>
-            <tr><td>Minimum time interval for auto-reload (seconds):</td><td><input type="text" name="autoreload"/> (ex: 5)</td></tr>
-            <tr><td>Use e-mail notification:</td><td><input type="checkbox" name="mail_not" value="1"/></td></tr>
+            <tr><td>Time before session expires (seconds):</td><td><input type="text" name="timeout" value="900" /> (ex: 900)</td></tr>
+            <tr><td>Time before a game expires (days):</td><td><input type="text" name="expire" value="14" /> (ex: 14)</td></tr>
+            <tr><td>Minimum time interval for auto-reload (seconds):</td><td><input type="text" name="autoreload" value="5" /> (ex: 5)</td></tr>
+            <tr><td>Use e-mail notification:</td><td><input type="checkbox" name="mail_not" value="1" checked="checked" /></td></tr>
             <tr><td>E-mail adress:</td><td><input type="text" name="mail_adr"/> (ex: WebChess@example.com)</td></tr>
             <tr><td>Main Page adress:</td><td><input type="text" name="url"/> (ex: http://webchess.sourceforge.net)</td></tr>
-            <tr><td>Maximum active users:</td><td><input type="text" name="maxUsers"/> (ex: 50)</td></tr>
-            <tr><td>Maximum active games:</td><td><input type="text" name="maxGames"/> (ex: 50)</td></tr>
-            <tr><td>Nick changes allowed:</td><td><input type="checkbox" name="changeNick" value="1"/></td></tr>
-            <tr><td>New users allowed:</td><td><input type="checkbox" name="newUsers" value="1"/></td></tr>
+            <tr><td>Maximum active users:</td><td><input type="text" name="maxUsers" value="50" /> (ex: 50)</td></tr>
+            <tr><td>Maximum active games:</td><td><input type="text" name="maxGames" value="50" /> (ex: 50)</td></tr>
+            <tr><td>Nick changes allowed:</td><td><input type="checkbox" name="changeNick" value="1" checked="checked" /></td></tr>
+            <tr><td>New users allowed:</td><td><input type="checkbox" name="newUsers" value="1" checked="checked" /></td></tr>
             <tr><td>Image extension:</td><td><select name="imageExtension" size="1">
-               <option value="gif">gif<br>
-               <option value="png">png<br>
+               <option value="gif">gif</option>
+               <option value="png" selected="selected">png</option>
                   </select>
                </td></tr>
             <tr><td colspan="2"><input type='hidden' name='confirm' value='finish' />
