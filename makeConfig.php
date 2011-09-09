@@ -86,7 +86,7 @@ if ($_POST['reuse']=='true')
 
 //Here we start the second part. We start to generate config.php.
 echo "<?php";
-echo "\$_CONFIG=true;\n\n";
+echo "\n\$_CONFIG=true;\n\n";
 
 echo "/* database settings */\n";
 echo "\$CFG_SERVER = '".$_POST['server']."';\n";
