@@ -61,7 +61,7 @@
 	$blackNick = mysql_result($tmpNick, 0);
 
 	/* load game */
-	$isInCheck = ($_POST['isInCheck'] == 'true');
+	$isInCheck = (isset($_POST['isInCheck']) && $_POST['isInCheck'] == 'true');
 	$isCheckMate = false;
 	$isPromoting = false;
 	$isUndoing = false;
@@ -74,13 +74,13 @@
 		doUndo();
 		saveGame();
 	}
-	elseif (($_POST['promotion'] != "") && ($_POST['toRow'] != "") && ($_POST['toCol'] != ""))
+	elseif ((isset($_POST['promotion']) && $_POST['promotion'] != "") && ($_POST['toRow'] != "") && ($_POST['toCol'] != ""))
 	{
 		savePromotion();
 		$board[$_POST['toRow']][$_POST['toCol']] = $_POST['promotion'] | ($board[$_POST['toRow']][$_POST['toCol']] & BLACK);
 		saveGame();
 	}
-	elseif (($_POST['fromRow'] != "") && ($_POST['fromCol'] != "") && ($_POST['toRow'] != "") && ($_POST['toCol'] != ""))
+	elseif ((isset($_POST['fromRow']) && $_POST['fromRow'] != "") && (isset($_POST['fromCol']) && $_POST['fromCol'] != "") && ($_POST['toRow'] != "") && ($_POST['toCol'] != ""))
 	{
 		/* ensure it's the current player moving				 */
 		/* NOTE: if not, this will currently ignore the command...               */

@@ -70,7 +70,7 @@
 
 	$tmpNewUser = false;
 	$errMsg = "";
-	switch($_POST['ToDo'])
+	if(isset($_POST['ToDo']))switch($_POST['ToDo'])
 	{
 		case 'NewUser':
 			/* create new player */
