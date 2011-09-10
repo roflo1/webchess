@@ -275,7 +275,7 @@
 			if ($_POST['response'] == 'accepted')
 			{
 				/* update game data */
-				$tmpQuery = "UPDATE " . $CFG_TABLE[games] . " SET gameMessage = '', messageFrom = '' WHERE gameID = ".$_POST['gameID'];
+				$tmpQuery = "UPDATE " . $CFG_TABLE[games] . " SET gameMessage = DEFAULT, messageFrom = DEFAULT WHERE gameID = ".$_POST['gameID'];
 				mysql_query($tmpQuery);
 
 				/* setup new board */
@@ -924,7 +924,7 @@
 						</thead>
 						<tbody id="inProgrTblBdy">
 					<?php
-						$tmpGames = mysql_query("SELECT * FROM " . $CFG_TABLE[games] . " WHERE gameMessage = '' AND (whitePlayer = ".$_SESSION['playerID']." OR blackPlayer = ".$_SESSION['playerID'].") ORDER BY dateCreated");
+						$tmpGames = mysql_query("SELECT * FROM " . $CFG_TABLE[games] . " WHERE gameMessage IS NULL AND (whitePlayer = ".$_SESSION['playerID']." OR blackPlayer = ".$_SESSION['playerID'].") ORDER BY dateCreated");
 
 						if (mysql_num_rows($tmpGames) == 0)
 							echo("<tr><td colspan=\"6\">" . gettext("You do not currently have any games in progress") . "</td></tr>\n");
@@ -1142,7 +1142,7 @@
 						</thead>
 						<tbody id="finishedTblBdy">
 <?php
-	$tmpGames = mysql_query("SELECT * FROM " . $CFG_TABLE[games] . " WHERE (gameMessage <> '' AND gameMessage <> 'playerInvited' AND gameMessage <> 'inviteDeclined') AND (whitePlayer = ".$_SESSION['playerID']." OR blackPlayer = ".$_SESSION['playerID'].") ORDER BY lastMove DESC");
+	$tmpGames = mysql_query("SELECT * FROM " . $CFG_TABLE[games] . " WHERE (gameMessage IS NOT NULL AND gameMessage <> 'playerInvited' AND gameMessage <> 'inviteDeclined') AND (whitePlayer = ".$_SESSION['playerID']." OR blackPlayer = ".$_SESSION['playerID'].") ORDER BY lastMove DESC");
 
 	if (mysql_num_rows($tmpGames) == 0)
             echo("<tr><td colspan=\"6\">" . gettext("You do not currently have any games in progress") . "</td></tr>\n");
