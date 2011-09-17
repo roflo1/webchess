@@ -399,20 +399,20 @@
 		global $CFG_TABLE;
 		global $pWhite,$pWhiteF,$pWhiteL,$pBlack,$pBlackF,$pBlackL,$gStart,$MyColor,$isDraw;
 
-		$tmpGameQ = mysql_query("SELECT whitePlayer,blackPlayer,dateCreated,gameMessage FROM " . $CFG_TABLE[games] . " WHERE gameID = " . $GameID) or die(mysql_error());
+		$tmpGameQ = mysql_query("SELECT whitePlayer,blackPlayer,dateCreated,gameMessage FROM " . $CFG_TABLE['games'] . " WHERE gameID = " . $GameID) or die(mysql_error());
 		$tmpGame = mysql_fetch_array($tmpGameQ, MYSQL_ASSOC);
 		
 		$gStart = $tmpGame['dateCreated'];
 		$isDraw="";
 		if($tmpGame['gameMessage']=="draw"){$isDraw=true;}else{$isDraw="";}
 		
-		$tmpBlackQ = mysql_query("SELECT nick,firstName,lastName FROM " . $CFG_TABLE[players] . " WHERE playerID = ".$tmpGame['blackPlayer']);
+		$tmpBlackQ = mysql_query("SELECT nick,firstName,lastName FROM " . $CFG_TABLE['players'] . " WHERE playerID = ".$tmpGame['blackPlayer']);
                 $xBlack = mysql_fetch_array($tmpBlackQ, MYSQL_ASSOC);
                 $pBlack = $xBlack['nick'];
 		$pBlackF = $xBlack['firstName'];
 		$pBlackL = $xBlack['lastName'];
      
-	        $tmpWhiteQ = mysql_query("SELECT nick,firstName,lastName FROM " . $CFG_TABLE[players] . " WHERE playerID = ".$tmpGame['whitePlayer']);
+	        $tmpWhiteQ = mysql_query("SELECT nick,firstName,lastName FROM " . $CFG_TABLE['players'] . " WHERE playerID = ".$tmpGame['whitePlayer']);
                 $xWhite = mysql_fetch_array($tmpWhiteQ, MYSQL_ASSOC);
                 $pWhite = $xWhite['nick'];
 		$pWhiteF = $xWhite['firstName'];

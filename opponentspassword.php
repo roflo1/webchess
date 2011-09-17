@@ -42,7 +42,7 @@
 		$opponentsNick = $_POST['opponentsNick'];
 
 		/* get opponents password from DB */
-		$tmpQuery = "SELECT password FROM " . $CFG_TABLE[players] . " WHERE playerID = ".$opponentsID;
+		$tmpQuery = "SELECT password FROM " . $CFG_TABLE['players'] . " WHERE playerID = ".$opponentsID;
 		$tmpPassword = mysql_query($tmpQuery);
 		$dbPassword = mysql_result($tmpPassword, 0);
 
@@ -65,7 +65,7 @@
 	else
 	{
 		/* get the players associated with this game */
-		$tmpQuery = "SELECT whitePlayer, blackPlayer FROM " . $CFG_TABLE[games] . " WHERE gameID = ".$_POST['gameID'];
+		$tmpQuery = "SELECT whitePlayer, blackPlayer FROM " . $CFG_TABLE['games'] . " WHERE gameID = ".$_POST['gameID'];
 		$tmpGameData = mysql_query($tmpQuery);
 		$tmpPlayers = mysql_fetch_array($tmpGameData, MYSQL_ASSOC);
 
@@ -76,7 +76,7 @@
 			$opponentsID = $tmpPlayers['whitePlayer'];
 
 		/* get the opponents information */
-		$tmpQuery = "SELECT nick FROM " . $CFG_TABLE[players] . " WHERE playerID = ".$opponentsID;
+		$tmpQuery = "SELECT nick FROM " . $CFG_TABLE['players'] . " WHERE playerID = ".$opponentsID;
 		$tmpNick = mysql_query($tmpQuery);
 		$opponentsNick = mysql_result($tmpNick, 0);
 	}

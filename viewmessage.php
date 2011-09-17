@@ -69,7 +69,7 @@
         {
             $messageID = $_POST['messageID'];
 
-            $SqlQuery="SELECT * FROM " . $CFG_TABLE[communication] . " WHERE commID = $messageID";
+            $SqlQuery="SELECT * FROM " . $CFG_TABLE['communication'] . " WHERE commID = $messageID";
             $tmpGames = mysql_query($SqlQuery);
 
             if (mysql_num_rows($tmpGames) == 0)
@@ -86,7 +86,7 @@
                 {
                 if($tmpGame['fromID']!=0)
                 {
-                    $innerSQL = "SELECT * FROM " . $CFG_TABLE[players] . " WHERE playerID = " . $tmpGame['fromID'];
+                    $innerSQL = "SELECT * FROM " . $CFG_TABLE['players'] . " WHERE playerID = " . $tmpGame['fromID'];
                     $innerRes = mysql_query($innerSQL);
                     $tempRes = mysql_fetch_array($innerRes, MYSQL_ASSOC);
                     $FromPlayer = $tempRes['nick'];

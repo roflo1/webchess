@@ -72,7 +72,7 @@
 			global $_POST, $_GET, $_SESSION;
 
 		$numMoves = -1;
-		mysql_query("DELETE FROM " . $CFG_TABLE[history] . " WHERE gameID = ".$_SESSION['gameID']);
+		mysql_query("DELETE FROM " . $CFG_TABLE['history'] . " WHERE gameID = ".$_SESSION['gameID']);
 
 		initBoard();
 	}

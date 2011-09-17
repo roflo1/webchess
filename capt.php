@@ -22,7 +22,7 @@
 /* connect to database */
 require 'connectdb.php';
 
-$f=mysql_query("SELECT * FROM " . $CFG_TABLE[history] . " WHERE ((replaced > '') OR (curPiece = 'pawn' AND toCol <> fromCol AND replaced IS NULL)) AND gameID =  '".$_SESSION['gameID']."' ORDER BY curColor DESC, replaced DESC");
+$f=mysql_query("SELECT * FROM " . $CFG_TABLE['history'] . " WHERE ((replaced > '') OR (curPiece = 'pawn' AND toCol <> fromCol AND replaced IS NULL)) AND gameID =  '".$_SESSION['gameID']."' ORDER BY curColor DESC, replaced DESC");
 
 $c=0;
 $d=0;

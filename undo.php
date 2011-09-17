@@ -31,9 +31,9 @@
 
 		/* get the last move from the history */
 		/* NOTE: MySQL currently has no support for subqueries */
-		$tmpMaxTime = mysql_query("SELECT Max(timeOfMove) FROM " . $CFG_TABLE[history] . " WHERE gameID = ".$_SESSION['gameID']);
+		$tmpMaxTime = mysql_query("SELECT Max(timeOfMove) FROM " . $CFG_TABLE['history'] . " WHERE gameID = ".$_SESSION['gameID']);
 		$maxTime = mysql_result($tmpMaxTime,0);
-		$moves = mysql_query("SELECT * FROM " . $CFG_TABLE[history] . " WHERE gameID = ".$_SESSION['gameID']." AND timeOfMove = '$maxTime'");
+		$moves = mysql_query("SELECT * FROM " . $CFG_TABLE['history'] . " WHERE gameID = ".$_SESSION['gameID']." AND timeOfMove = '$maxTime'");
 
 		/* if there actually is a move... */
 		if ($lastMove = mysql_fetch_array($moves, MYSQL_ASSOC))
@@ -86,7 +86,7 @@
 
 				/* remove last move from history */
 				$numMoves--;
-				mysql_query("DELETE FROM " . $CFG_TABLE[history] . " WHERE gameID = ".$_SESSION['gameID']." AND timeOfMove = '$maxTime'");
+				mysql_query("DELETE FROM " . $CFG_TABLE['history'] . " WHERE gameID = ".$_SESSION['gameID']." AND timeOfMove = '$maxTime'");
 
 			/* else */
 				/* output error message */

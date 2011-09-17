@@ -398,7 +398,7 @@
 			$result="1/2-1/2";
 		};
 
-		$tmpQuery = "SELECT gameMessage, messageFrom FROM " . $CFG_TABLE[games] . " WHERE gameID = ".$_SESSION['gameID'];
+		$tmpQuery = "SELECT gameMessage, messageFrom FROM " . $CFG_TABLE['games'] . " WHERE gameID = ".$_SESSION['gameID'];
 		$tmpMessages = mysql_query($tmpQuery);
 		$tmpMessage = mysql_fetch_array($tmpMessages, MYSQL_ASSOC);
 

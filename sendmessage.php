@@ -73,7 +73,7 @@ if($_POST['newMessage'])
         else
                 $msgtype="0"; // Always 0... yet..
 
-        $sql = "INSERT INTO " . $CFG_TABLE[communication] . " (gameID,fromID,toID,title,text,postDate,expireDate,ack,commType) ";
+        $sql = "INSERT INTO " . $CFG_TABLE['communication'] . " (gameID,fromID,toID,title,text,postDate,expireDate,ack,commType) ";
         $sql .= "VALUES ( $mGame , $fromPerson , $toPerson, '$msgtitle', '$msgtext', NOW( ) , NULL , '0', '$msgtype' );";
         mysql_query($sql) or die("can't do query: $sql");
 ?>
@@ -98,7 +98,7 @@ die();
 				<select name="to" size="1">
 <?php
 
-					$tmpQuery="SELECT playerID, nick FROM " . $CFG_TABLE[players] . " WHERE playerID <> ".$id." ORDER BY nick ASC";
+					$tmpQuery="SELECT playerID, nick FROM " . $CFG_TABLE['players'] . " WHERE playerID <> ".$id." ORDER BY nick ASC";
 	                                $tmpPlayers = mysql_query($tmpQuery) or die("Sorry: $tmpQuery");
                                         while($tmpPlayer = mysql_fetch_array($tmpPlayers, MYSQL_ASSOC))
                                         {
