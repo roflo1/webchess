@@ -1152,10 +1152,41 @@
 		$stats = array();
 		while($tmpGame = mysql_fetch_array($tmpGames, MYSQL_ASSOC))
 		{
+			if ($tmpGame['whitePlayer'] == $_SESSION['playerID']) {
+				$myColor = "white";
+			} else {
+				$myColor = "black";
+			}
+			switch($tmpGame['gameMessage']) {
+				case "checkMate":
+				{
+					if( ($tmpGame['messageFrom']==$myColor) ) {
+						$addTrClass = " won";
+					} else {
+						$addTrClass = " lost";
+					}
+					break;
+				}
+				case "playerResigned":
+				{
+					if( ($tmpGame['messageFrom']==$myColor) ) {
+						$addTrClass = " lost";
+					} else {
+						$addTrClass = " won";
+					}
+					break;
+				}
+				default:
+				{
+					$addTrClass = " tie";
+					break;
+				}
+			}
+
 			if($rowNbr %2 == 0)
-				echo('<tr class="alternateRow">');
+				echo('<tr class="alternateRow'.$addTrClass.'">');
 			else
-				echo('<tr>');
+				echo('<tr class="'.$addTrClass.'">');
 			$rowNbr++;
 			echo ('<td style="display:none;"></td>');
 			echo('<td>');

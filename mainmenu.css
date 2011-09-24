@@ -228,6 +228,15 @@ th a:active, th a:hover {
 tr.alternateRow {
   background-color: #e0e0e0;
 }
+tr.won {
+  font-weight : bold;
+}
+tr.lost {
+  color : #AA0000;
+}
+tr.tie {
+  font-style: italic;
+}
 
 td.sortedColumn {
   background-color: #f0f0f0;
