@@ -94,7 +94,7 @@ function createTablePieces(){
 function createTablePlayers(){
 	$SQLCreateTablePlayers = "CREATE TABLE players (
 		playerID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-		password CHAR(16) NOT NULL,
+		password VARCHAR(40) NOT NULL,
 		firstName CHAR(20) NOT NULL,
 		lastName CHAR(20) NOT NULL,
 		nick CHAR(20) NOT NULL UNIQUE,
@@ -102,6 +102,26 @@ function createTablePlayers(){
 	);";
 	$Result = mysql_query($SQLCreateTablePlayers);
         return $Result;
+}
+
+function tablePlayersHasLongPasswordField() {
+	$SQLUpdateTablePlayers = "EXPLAIN players;";
+	$Result = mysql_query($SQLUpdateTablePlayers);
+	while($Row=mysql_fetch_row($Result)){
+		if($Row[0]=="password" && $Row[1]=="varchar(40)"){
+			return true;
+		}
+	}
+	return false;
+}
+
+
+function modifyPasswordFieldInPlayersTable() {
+	$SQLUpdateTablePlayers = "ALTER TABLE players CHANGE COLUMN password password VARCHAR(40) NOT NULL";
+	//echo $SQLUpdateTablePlayers;
+	$Result = mysql_query($SQLUpdateTablePlayers);
+	if(!$Result) echo "Error while modifying table: " . mysql_error() . "<br />";
+	return $Result;
 }
 
 function tablePlayersHasLastAccessField() {
@@ -113,7 +133,6 @@ function tablePlayersHasLastAccessField() {
 		}
 	}
 	return false;
-        return $Result;
 }
 
 function addLastAccessFieldToPlayersTable() {
@@ -262,6 +281,11 @@ function createTables($user,$password,$server,$DBname){
 	//$logMsg .= "Table players exists. Checking if table players has field lastAccess..\n";
         echo "Table players exists. Checking if table players has the lastAccess field..<br>";
 	// Check if field "lastAccess" exists..
+	if(!tablePlayersHasLongPasswordField()) {
+		//$logMsg .= "Modifying password field..\n";
+		echo "Password field is not correct! Modifying..<br />";
+		modifyPasswordFieldInPlayersTable();
+	} else echo "Field password is properly formed. Nothing done.<br>";
 	if(!tablePlayersHasLastAccessField()) {
 		// if false: update by calling addLastAccessFieldToPlayersTable()
 		//$logMsg .= "Adding lastAccess field..\n";
@@ -481,7 +505,7 @@ switch($_POST['confirm']){
              config.php file containing your configuration information. To make
              sure your hosting service did not add any javascript to the end of
              the file (which would break WebChess), verify that the last line
-             contains the code: '? >'.</p>
+             contains the code: '?&gt;'.</p>
 
          <?php
             //This form will generate the config.php file and put it to download.
@@ -512,13 +536,20 @@ switch($_POST['confirm']){
             <tr><td>Main Page adress:</td><td><input type="text" name="url"/> (ex: http://webchess.sourceforge.net)</td></tr>
             <tr><td>Maximum active users:</td><td><input type="text" name="maxUsers" value="50" /> (ex: 50)</td></tr>
             <tr><td>Maximum active games:</td><td><input type="text" name="maxGames" value="50" /> (ex: 50)</td></tr>
-            <tr><td>Nick changes allowed:</td><td><input type="checkbox" name="changeNick" value="1" checked="checked" /></td></tr>
+            <tr><td>Nick changes allowed:</td><td><input type="checkbox" name="changeNick" value="1" /></td></tr>
             <tr><td>New users allowed:</td><td><input type="checkbox" name="newUsers" value="1" checked="checked" /></td></tr>
             <tr><td>Image extension:</td><td><select name="imageExtension" size="1">
                <option value="gif">gif</option>
                <option value="png" selected="selected">png</option>
                   </select>
                </td></tr>
+            <tr><td>Password storage hash:</td><td><select name="passHash" size="1">
+               <option value="plaintext">None (plaintext)</option>
+               <option value="MD5">MD5</option>
+               <option value="SHA1" selected="selected">SHA1</option>
+                  </select>
+               </td></tr>
+            <tr><td>Hash Salt:</td><td><input type="text" name="hashSalt" value="webchess1" /> Use a random string unique to your server (ex: webchess1)</td></tr>
             <tr><td colspan="2"><input type='hidden' name='confirm' value='finish' />
             <input type='submit' value='Generate config.php' /></td></tr>
          </table></form>

@@ -42,12 +42,12 @@
 		$opponentsNick = $_POST['opponentsNick'];
 
 		/* get opponents password from DB */
-		$tmpQuery = "SELECT password FROM " . $CFG_TABLE['players'] . " WHERE playerID = ".$opponentsID;
+		$tmpQuery = "SELECT password FROM " . $CFG_TABLE['players'] . " WHERE playerID = ".$opponentsID . " AND password = ".saltAndHashString($_POST['pwdPassword']);
 		$tmpPassword = mysql_query($tmpQuery);
-		$dbPassword = mysql_result($tmpPassword, 0);
+		$dbPassword = mysql_num_rows($tmpPassword);
 
 		/* check to see if supplied password matched that of the DB */
-		if ($dbPassword == $_POST['pwdPassword'])
+		if ($dbPassword == 1)
 		{
 			$_SESSION['isSharedPC'] = true;
 

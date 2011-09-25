@@ -89,7 +89,7 @@
 				die();
 			}
 
-			$tmpQuery = "INSERT INTO " . $CFG_TABLE['players'] . " (password, firstName, lastName, nick) VALUES ('".$_POST['pwdPassword']."', '".$_POST['txtFirstName']."', '".$_POST['txtLastName']."', '".$_POST['txtNick']."')";
+			$tmpQuery = "INSERT INTO " . $CFG_TABLE['players'] . " (password, firstName, lastName, nick) VALUES (".saltAndHashString($_POST['pwdPassword']).", '".$_POST['txtFirstName']."', '".$_POST['txtLastName']."', '".$_POST['txtNick']."')";
 			mysql_query($tmpQuery);
 
 			/* get ID of new player */
@@ -129,7 +129,7 @@
 
 		case 'Login':
 			/* check for a player with supplied nick and password */
-			$tmpQuery = "SELECT * FROM " . $CFG_TABLE['players'] . " WHERE nick = '".$_POST['txtNick']."' AND password = '".$_POST['pwdPassword']."'";
+			$tmpQuery = "SELECT * FROM " . $CFG_TABLE['players'] . " WHERE nick = '".$_POST['txtNick']."' AND password = ".saltAndHashString($_POST['pwdPassword']);
 			$tmpPlayers = mysql_query($tmpQuery);
 			$tmpPlayer = mysql_fetch_array($tmpPlayers, MYSQL_ASSOC);
 
@@ -328,11 +328,11 @@
 			break;
 
 		case 'UpdatePersonalInfo':
-			$tmpQuery = "SELECT password FROM " . $CFG_TABLE['players'] . " WHERE playerID = ".$_SESSION['playerID'];
+			$tmpQuery = "SELECT password FROM " . $CFG_TABLE['players'] . " WHERE playerID = ".$_SESSION['playerID'] . " AND password = " . saltAndHashString($_POST['pwdOldPassword']);
 			$tmpPassword = mysql_query($tmpQuery);
-			$dbPassword = mysql_result($tmpPassword, 0);
+			$dbPassword = mysql_num_rows($tmpPassword);
 
-			if ($dbPassword != $_POST['pwdOldPassword'])
+			if ($dbPassword != 1)
 				$errMsg = "Sorry, incorrect old password!";
 			else
 			{
@@ -353,7 +353,7 @@
 				if ($tmpDoUpdate)
 				{
 					/* update DB */
-					$tmpQuery = "UPDATE " . $CFG_TABLE['players'] . " SET firstName = '".$_POST['txtFirstName']."', lastName = '".$_POST['txtLastName']."', password = '".$_POST['pwdPassword']."'";
+					$tmpQuery = "UPDATE " . $CFG_TABLE['players'] . " SET firstName = '".$_POST['txtFirstName']."', lastName = '".$_POST['txtLastName']."', password = ".saltAndHashString($_POST['pwdPassword']);
 
 					if ($CFG_NICKCHANGEALLOWED && $_POST['txtNick'] != "")
 						$tmpQuery .= ", nick = '".$_POST['txtNick']."'";

@@ -127,11 +127,14 @@ if ($_POST['mail_not']=='1')
    echo "TRUE;\n";
 else echo "FALSE;\n";
 
+echo "/* Email address people see when receiving WebChess generated mail */\n";
 echo "\$CFG_MAILADRESS = '".$_POST['mail_adr']."';\n";
 
-echo "\$CFG_MAINPAGE = '".$_POST['url']."';\n";
+echo "/* This URL is displayed in the email notices */\n";
+echo "\$CFG_MAINPAGE = '".$_POST['url']."';\n\n";
 echo "\$CFG_MAXUSERS = ".$_POST['maxUsers'].";\n";
 echo "\$CFG_MAXACTIVEGAMES = ".$_POST['maxGames'].";\n";
+echo "/* Whether a user can change their nick from the main menu */\n";
 echo "\$CFG_NICKCHANGEALLOWED = ";
 if ($_POST['changeNick']=='1')
    echo "TRUE;\n";
@@ -143,7 +146,9 @@ if ($_POST['newUsers']=='1')
 else echo "FALSE;\n";
 
 ?>
-/* mysql table names */
+
+/* mysql table names
+	   Change these if your database needs different table names */
 $CFG_TABLE['communication'] = "communication";
 $CFG_TABLE['games'] = "games";
 $CFG_TABLE['history'] = "history";
@@ -154,5 +159,11 @@ $CFG_TABLE['preferences'] = "preferences";
 
 <?php
 echo "\$CFG_IMAGE_EXT = '".$_POST['imageExtension']."';\n";
+echo "\n//WARNING!! The following 2 fields should not be modified once the first user";
+echo "\n//  has been created! If you do change them, you'll need to manually modify";
+echo "\n//  the user's passwords in the database!\n";
+echo "\$CFG_PASS_HASH = '".$_POST['passHash']."';\n";
+echo "\$CFG_HASH_SALT = '".$_POST['hashSalt']."';\n";
+
 echo "?>";
 ?>

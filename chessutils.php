@@ -435,4 +435,28 @@
                 
 
         }
+
+function saltAndHashString($password) {
+	global $CFG_PASS_HASH, $CFG_HASH_SALT;
+
+	switch($CFG_PASS_HASH) {
+		case "MD5":
+		{
+			$str = "MD5('".$CFG_HASH_SALT.$password."')";
+			break;
+		}
+		case "SHA1":
+		{
+			$str = "SHA1('".$CFG_HASH_SALT.$password."')";
+			break;
+		}
+		default:
+		{
+			// Plain text... just add single quotes..
+			$str = "'".$password."'";
+			break;
+		}
+	}
+	return $str;
+}
 ?>

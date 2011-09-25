@@ -59,4 +59,11 @@
 
 	/* theme settings */
 	$CFG_IMAGE_EXT = "png";
+
+//WARNING!! The following 2 fields should not be modified once the first user
+//  has been created! If you do change them, you'll need to manually modify
+//  the user's passwords in the database!
+$CFG_PASS_HASH = 'SHA1';
+$CFG_HASH_SALT = 'webchess1';
+
 ?>
