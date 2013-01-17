@@ -128,7 +128,7 @@ if ($_POST['mail_not']=='1')
 else echo "FALSE;\n";
 
 echo "/* Email address people see when receiving WebChess generated mail */\n";
-echo "\$CFG_MAILADRESS = '".$_POST['mail_adr']."';\n";
+echo "\$CFG_MAILADDRESS = '".$_POST['mail_adr']."';\n";
 
 echo "/* This URL is displayed in the email notices */\n";
 echo "\$CFG_MAINPAGE = '".$_POST['url']."';\n\n";
